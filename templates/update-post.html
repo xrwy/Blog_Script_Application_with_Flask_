@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %} Update Content {% endblock %}
+
+{% block content %}
+    <h3>Update Content</h3>
+    <form action="/post/update/result" method="POST" class="form">
+        <ul>
+            <li>
+                <label for="title">Article Title</label>
+                <input type="text" name="title" value="{{ request.form['title'] }}"/>
+            </li>
+            <li>
+                <label for="category">Article Category</label>
+                <select id="category" name="category_id">
+                    <option value="">Select</option>
+                    {% for category in categories() %}
+                        <option value="{{category[0]}}">{{category[1]}}</option>
+                    {% endfor %}
+                </select>
+            </li>
+            <li> 
+                <label for="content">Article Content</label>
+                <textarea name="content_" id="content" cols="30" rows="10">{{request.form['content_']}}</textarea>
+            </li>
+            <li>
+                <button type="submit">Update</button>
+            </li>
+        </ul>
+    </form>
+{% endblock %}
+

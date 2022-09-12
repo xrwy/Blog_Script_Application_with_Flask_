@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %} {{category_[1]}} {% endblock %}
+
+{% block content %}
+    <h3>{{category_[1]}}</h3>
+    <div class="articles">
+        {% for post in posts %}
+            <article>
+                <h4>{{post[1]}}</h4>
+                <ul>
+                    <li><span class="time">{{post[6] | timeAgo}}</span></li>
+                    <li><span class="user">{{post[8]}}</span></li>
+                    <li><span class="category">{{post[12]}}</span></li>
+                </ul>
+                <a href="{{ url_for('post', url=post[2]) }}" class="show-btn">View</a>
+                <a href="{{ url_for('update', id=post[0]) }}" class="show-btn">Update</a>
+                <a href="{{ url_for('postDelete', id_=post[0]) }}" class="show-btn">Delete</a>
+            </article>
+        {% endfor %}
+    </div>
+{% endblock %} 

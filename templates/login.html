@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %} Login {% endblock %}
+
+{% block content %}
+    <h3>Login</h3>
+    <form action="" method="POST" class="form">
+        {% if error %}
+            <div class="error">{{error}}</div>
+        {% endif %}
+        <ul>
+            <li>
+                <label for="username">E-mail</label>
+                <input type="email" name="email" value="{{ request.form['email'] }}"/>
+            </li>
+            <li>
+                <label for="password">Password</label>
+                <input type="password" name="password" value="{{ request.form['password'] }}"/>
+            </li>
+            <li>
+                <button type="submit">Login</button>
+            </li>
+        </ul>
+        <span class="or">Don't have an account?</span>
+        <a href="{{ url_for('register')}}" class="form-url">Register Now</a>
+    </form>
+{% endblock %}
+

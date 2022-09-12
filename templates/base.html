@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} {% endblock %} - HackerTeam</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}"/>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="{{ url_for('home')}}" class="logo">
+                ./Main
+            </a>
+            <nav>
+                <ul>
+                    {% for category in categories() %}
+                        <li>
+                            <a href="{{ url_for('category', url=category[2])}}">{{category[1]}}</a>
+                        </li>
+                    {% endfor %}
+                    <li class="btn">
+                        {% if 'user_id' in session %}
+                            <a href="{{ url_for('newPost')}}">Add Content</a>
+                            <a href="{{ url_for('logout')}}">Log out</a>
+                        {% else %}
+                            <a href="{{ url_for('login')}}">Login</a>
+                        {% endif %}
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main container">
+        {% block content %} {% endblock %}
+    </main>
+
+</body>
+</html>
